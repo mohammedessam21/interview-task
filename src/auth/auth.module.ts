@@ -12,10 +12,10 @@ import { UserModule } from 'src/users/user.module';
 @Module({
     imports: [
         UserModule,
-        PassportModule.register({ defaultStrategy: 'jwt' }),   //cant understand . where is keywords and where naming 
+        PassportModule.register({ defaultStrategy: 'jwt' }),   
         JwtModule.register({
-            // imports: [ConfigModule], // i done this 
-            // inject: [ConfigService], // we did this to useenv file but whyy
+            // imports: [ConfigModule], // 
+            // inject: [ConfigService], // 
             /*useFactory:*/ /*(config: ConfigService) => */
 
             global: true,
