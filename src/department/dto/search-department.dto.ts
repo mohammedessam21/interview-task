@@ -6,14 +6,14 @@ import { Types } from "mongoose";
 export class SearchDepartmentDto {
     @IsOptional()
     @IsString()
-    name: string;
+    name?: string;
     @IsOptional()
     @IsString()
-    location: string;
+    location?: string;
     @IsOptional()
     @IsString()
-    field: string;
+    field?: string;
     @IsOptional()
     @IsString()
-    departmentId: Types.ObjectId;
+    departmentId?: Types.ObjectId;
 }
