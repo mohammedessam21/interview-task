@@ -25,6 +25,7 @@ export class DepartmentService {
 
     async create(createDepartmentDto:CreateDepartmentDto): Promise<DepartmentDocument> {
         const department = plainToInstance(Department,createDepartmentDto );
+        
         return await this.departmentRepository.create(department);
     }
 
@@ -35,14 +36,17 @@ export class DepartmentService {
             searchQuery["name"] = name;
         }
         if (location) {
+            
             searchQuery["location"] = location
         }
         if (departmentId) {
+            
             searchQuery["departmentId"] = departmentId
         }
         if (field) {
             searchQuery["field"] = field
         }
+       
 
         return await this.departmentRepository.search(searchQuery)
     }

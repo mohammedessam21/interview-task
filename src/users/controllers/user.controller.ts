@@ -14,7 +14,8 @@ export class UserController {
 
     constructor(private userService: UserService) { }
     @Get()
-    @Roles(Role.SUPER_ADMIN, Role.DEPARTMENT_MANAGER)
+    @UseGuards(RolesGuard)
+    @Roles(Role.SUPER_ADMIN,Role.DEPARTMENT_MANAGER)
     async findAll(@Query() param: SearchUserDto, @Req() request: Request) {
         return await this.userService.findAll(param, request)
 
@@ -22,12 +23,14 @@ export class UserController {
 
 
     @Post()
+    @UseGuards(RolesGuard)
 
     @Roles(Role.SUPER_ADMIN)
     async create(@Body() usercreatedto: CreateUserDto) {
         return await this.userService.create(usercreatedto)
     }
     @Get('/:id')
+    @UseGuards(RolesGuard)
     @Roles(Role.SUPER_ADMIN)
     async findById(@Param('id') id: Types.ObjectId) {
 
@@ -41,6 +44,7 @@ export class UserController {
         return await this.userService.deleteById(id,)
     }
     @Patch(':id')
+    @UseGuards(RolesGuard)
     @Roles(Role.SUPER_ADMIN)
     async update(@Body() departmentId: Types.ObjectId) {
         return await this.userService.update(departmentId)

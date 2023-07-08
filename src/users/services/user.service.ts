@@ -12,16 +12,21 @@ export class UserService {
     constructor(private userRepository: UserRepository) { }
 
 
-    async findAll(searchUserDto: SearchUserDto, request: Request) {
+    async findAll(searchUserDto: SearchUserDto, request: Request):Promise<User[]> {
         const loggedInUser = await this.findById(request["user"].sub);
+        console.log(loggedInUser.roles)
+        
 
         if (Object.keys(searchUserDto).length > 0 && loggedInUser.roles.includes(Role.DEPARTMENT_MANAGER) && loggedInUser.departmentId) {
             searchUserDto.departmentId = loggedInUser.departmentId;
+            
             return await this.search(searchUserDto);
           } else if (loggedInUser.roles.includes(Role.DEPARTMENT_MANAGER) && loggedInUser.departmentId) {
+            console.log(loggedInUser.departmentId)
             return await this.findByDepartmentId(loggedInUser.departmentId);
           } else if (Object.keys(searchUserDto).length > 0 )
           {
+           
             return await this.search(searchUserDto)
           }
           else {
@@ -29,12 +34,13 @@ export class UserService {
           }
     }
 
-    async findByDepartmentId(id: Types.ObjectId) {
+    async findByDepartmentId(id: Types.ObjectId):Promise<User[]> {
         return await this.userRepository.findByDepartmentId(id)
     }
 
     async create(usercreatedto: CreateUserDto): Promise<UserDocument> {
         const user = plainToInstance(User, usercreatedto);
+       user.departmentId=new Types.ObjectId(user.departmentId)
         return await this.userRepository.create(user);
     }
 

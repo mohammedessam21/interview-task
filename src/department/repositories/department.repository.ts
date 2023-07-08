@@ -18,6 +18,8 @@ export class DepartmentRepository {
     }
 
     async search(searchQuery: any) {
+        
+
         return await this.departmentModel.find(searchQuery)
     }
 

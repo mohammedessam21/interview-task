@@ -36,8 +36,10 @@ export class UserRepository {
     async findByUserName(username: string) {
         return await this.userModel.findOne({ username: username })
     }
-    async findByDepartmentId (id: Types.ObjectId){
-        return await this.userModel.find({id})
+    async findByDepartmentId (id:Types.ObjectId):Promise<User[]>{
+        
+       
+        return await this.userModel.find({departmentId:new Types.ObjectId(id)})
     }
     async update( departmentId:Types.ObjectId) {
         return await this.userModel.updateOne(departmentId) 
