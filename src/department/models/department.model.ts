@@ -7,7 +7,7 @@ export type DepartmentDocument = Department & Document;
 @Schema({
     timestamps: true,
 })
-export class Department { //diffrence between extend and export type !!
+export class Department { 
     @Prop({ required: true })
     name: string;
     @Prop()
