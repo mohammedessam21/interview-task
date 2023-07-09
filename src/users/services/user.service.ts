@@ -14,7 +14,7 @@ export class UserService {
 
     async findAll(searchUserDto: SearchUserDto, request: Request):Promise<User[]> {
         const loggedInUser = await this.findById(request["user"].sub);
-        console.log(loggedInUser.roles)
+       
         
 
         if (Object.keys(searchUserDto).length > 0 && loggedInUser.roles.includes(Role.DEPARTMENT_MANAGER) && loggedInUser.departmentId) {
