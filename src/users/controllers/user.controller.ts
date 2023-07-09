@@ -6,6 +6,7 @@ import { Role } from '../role.enum';
 import { CreateUserDto } from 'src/auth/dto/create-user.dto';
 import { SearchUserDto } from 'src/auth/dto/search-user.dto';
 import { RolesGuard } from '../roles.guard';
+import { PatchDto } from 'src/auth/dto/patch-user.dto';
 
 @Controller('users')
 
@@ -41,13 +42,15 @@ export class UserController {
     @UseGuards(RolesGuard)
     @Roles(Role.SUPER_ADMIN)
     async deleteById(@Param('id') id: Types.ObjectId) {
+        console.log(id)
         return await this.userService.deleteById(id,)
     }
-    @Patch(':id')
+    @Patch()
     @UseGuards(RolesGuard)
     @Roles(Role.SUPER_ADMIN)
-    async update(@Body() departmentId: Types.ObjectId) {
-        return await this.userService.update(departmentId)
-    }
+    async update(@Body()patchDto:PatchDto) {
+       console.log(patchDto._id)
+        console.log(patchDto.departmentId)
+        return await this.userService.update(patchDto) }
 
 }

@@ -6,6 +6,7 @@ import { CreateUserDto } from 'src/auth/dto/create-user.dto';
 import { SearchUserDto } from 'src/auth/dto/search-user.dto';
 import { Role } from '../role.enum';
 import { User, UserDocument } from 'src/users/models/user.schema';
+import { PatchDto } from 'src/auth/dto/patch-user.dto';
 
 @Injectable()
 export class UserService {
@@ -83,7 +84,7 @@ export class UserService {
         return await this.userRepository.findByUserName(username)
 
     }
-    async update( departmentId:Types.ObjectId) {
-        return await this.userRepository.update(departmentId) 
+    async update(patchDto:PatchDto) {
+        return await this.userRepository.update(patchDto) 
     }
 }
