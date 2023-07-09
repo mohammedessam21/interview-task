@@ -49,8 +49,7 @@ export class UserController {
     @UseGuards(RolesGuard)
     @Roles(Role.SUPER_ADMIN)
     async update(@Body()patchDto:PatchDto) {
-       console.log(patchDto._id)
-        console.log(patchDto.departmentId)
+      
         return await this.userService.update(patchDto) }
 
 }
