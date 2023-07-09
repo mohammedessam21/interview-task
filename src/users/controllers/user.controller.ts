@@ -6,7 +6,7 @@ import { Role } from '../role.enum';
 import { CreateUserDto } from 'src/auth/dto/create-user.dto';
 import { SearchUserDto } from 'src/auth/dto/search-user.dto';
 import { RolesGuard } from '../roles.guard';
-import { PatchDto } from 'src/auth/dto/patch-user.dto';
+import {  PatchUserDto } from 'src/auth/dto/patch-user.dto';
 
 @Controller('users')
 
@@ -48,7 +48,7 @@ export class UserController {
     @Patch()
     @UseGuards(RolesGuard)
     @Roles(Role.SUPER_ADMIN)
-    async update(@Body()patchDto:PatchDto) {
+    async update(@Body()patchDto:PatchUserDto) {
       
         return await this.userService.update(patchDto) }
 

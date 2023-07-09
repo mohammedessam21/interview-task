@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Model, Types } from "mongoose";
 import { User, UserDocument } from "src/users/models/user.schema";
 import { SearchUserDto } from "src/auth/dto/search-user.dto";
-import { PatchDto } from "src/auth/dto/patch-user.dto";
+import {  PatchUserDto } from "src/auth/dto/patch-user.dto";
 
 @Injectable()
 export class UserRepository {
@@ -42,7 +42,7 @@ export class UserRepository {
        
         return await this.userModel.find({departmentId:new Types.ObjectId(id)})
     }
-    async update( patchDto:PatchDto) {
+    async update( patchDto:PatchUserDto) {
         return await this.userModel.updateOne({_id:patchDto._id},{departmentId:new Types.ObjectId(patchDto.departmentId)})
     }
 

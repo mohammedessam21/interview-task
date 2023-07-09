@@ -60,7 +60,21 @@ export class DepartmentService {
         if (loggedInUser.roles.includes(Role.DEPARTMENT_MANAGER) && loggedInUser.departmentId !== updateDepartmentDto.departmentId) {
             throw new UnauthorizedException();
         }
-        return await this.departmentRepository.update(updateDepartmentDto)
+        const { name, location, field, departmentId } = updateDepartmentDto;
+        const updateQuery = {};
+        if (name) {
+            updateQuery["name"] = name;
+        }
+        if (location) {
+            updateQuery["location"] = location
+        }
+        if (departmentId) {
+            updateQuery["departmentId"] = departmentId
+        }
+        if (field) {
+            updateQuery["field"] = field
+        }
+        return await this.departmentRepository.update(updateQuery)
     }
 
 }

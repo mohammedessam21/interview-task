@@ -27,8 +27,9 @@ export class DepartmentRepository {
         return await this.departmentModel.deleteOne({ _id: id });
     }
     
-    async update(updateDepartmentDto: UpdateDepartmentDto) {
-        return await this.departmentModel.updateOne({ _id: updateDepartmentDto.departmentId, name: updateDepartmentDto.name })
+    async update(updateQuery: any) {
+       
+        return await this.departmentModel.updateOne({_id:updateQuery.departmentId},updateQuery)
     }
 }
 

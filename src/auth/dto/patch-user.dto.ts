@@ -1,7 +1,7 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 import { Types } from 'mongoose';
 
-export class PatchDto {
+export class PatchUserDto {
     @IsNotEmpty()
     _id:Types.ObjectId;
 

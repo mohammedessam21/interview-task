@@ -13,7 +13,7 @@ export class UpdateDepartmentDto {
     @IsOptional()
     @IsString()
     field: string;
-    @IsOptional()
+    @IsNotEmpty()
     @IsString()
     departmentId: Types.ObjectId;
 }

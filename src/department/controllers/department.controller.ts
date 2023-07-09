@@ -33,7 +33,7 @@ export class DepartmentController {
     async delete(@Param('id') id: Types.ObjectId) {
         return await this.departmentservice.delete(id)
     }
-    @Patch(':id')
+    @Patch()
     @UseGuards(RolesGuard)
     @Roles(Role.SUPER_ADMIN, Role.DEPARTMENT_MANAGER)
     async update(@Body() updateDepartmentDto: UpdateDepartmentDto, @Req() request: Request) {
